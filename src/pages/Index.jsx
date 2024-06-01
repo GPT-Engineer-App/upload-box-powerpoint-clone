@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Container, VStack, Text, Box, Input, Button, IconButton, useToast } from "@chakra-ui/react";
+import { Container, VStack, Text, Box, Input, Button, IconButton, useToast, HStack } from "@chakra-ui/react";
+import SlidesList from "../components/SlidesList.jsx";
 import { FaFileUpload } from "react-icons/fa";
 
 const Index = () => {
@@ -33,18 +34,23 @@ const Index = () => {
   };
 
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-      <VStack spacing={4}>
-        <Text fontSize="2xl">PowerPoint Clone</Text>
-        <Box borderWidth="2px" borderRadius="lg" borderColor="gray.300" padding={8} textAlign="center" width="100%">
-          <Text fontSize="lg" marginBottom={4}>
-            Upload your text or PDF file
-          </Text>
-          <Input id="fileInput" type="file" accept=".pdf,.txt" display="none" onChange={handleFileChange} />
-          <IconButton aria-label="Upload file" icon={<FaFileUpload />} size="lg" onClick={handleUploadClick} />
-          {file && <Text marginTop={4}>Uploaded File: {file.name}</Text>}
-        </Box>
-      </VStack>
+    <Container maxW="container.xl" height="100vh" display="flex" flexDirection="row">
+      <Box width="20%" borderRightWidth="2px" borderColor="gray.300" padding={4}>
+        <SlidesList />
+      </Box>
+      <Box width="80%" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
+        <VStack spacing={4}>
+          <Text fontSize="2xl">PowerPoint Clone</Text>
+          <Box borderWidth="2px" borderRadius="lg" borderColor="gray.300" padding={8} textAlign="center" width="100%">
+            <Text fontSize="lg" marginBottom={4}>
+              Upload your text or PDF file
+            </Text>
+            <Input id="fileInput" type="file" accept=".pdf,.txt" display="none" onChange={handleFileChange} />
+            <IconButton aria-label="Upload file" icon={<FaFileUpload />} size="lg" onClick={handleUploadClick} />
+            {file && <Text marginTop={4}>Uploaded File: {file.name}</Text>}
+          </Box>
+        </VStack>
+      </Box>
     </Container>
   );
 };
